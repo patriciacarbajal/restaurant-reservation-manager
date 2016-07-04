@@ -3,6 +3,7 @@
   <ol>
     <% Reservation.where(restaurant_id: @restaurant.id).each do |reservation|%>
     <li class="admin-restaurant-reservation">
+      <div><%=reservation.customer.name%></div>
       <div><%=reservation.date.strftime("%m/%d/%Y")%></div>
       <div><%=reservation.time.strftime("%l:%M%p")%></div>
       <div>Party of <%=reservation.party_size%></div>
