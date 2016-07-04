@@ -1,0 +1,33 @@
+body {
+  text-align: center;
+  font-family: verdana;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.error-notices, .flash {
+  color: red;
+  text-decoration: none;
+}
+
+.about-restaurant, .restaurant-description {
+  width: 500px;
+  margin: auto;
+  padding: 10px;
+}
+
+.reservation-container {
+  padding-top: 25px;
+}
+
+.reservation-data {
+  padding-bottom: 25px;
+}
+
+.admin-restaurant-reservation {
+  width: 180px;
+  margin: auto;
+  padding: 25px;
+}

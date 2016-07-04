@@ -1,0 +1,16 @@
+<div class= "reservation-container">
+  <h1><%=@restaurant.reservations.count%> <%="reservation".pluralize(@restaurant.reservations.count)%> for <%=@restaurant.name%> </h1>
+  <ol>
+    <% Reservation.where(restaurant_id: @restaurant.id).each do |reservation|%>
+    <li class="admin-restaurant-reservation">
+      <div><%=reservation.date.strftime("%m/%d/%Y")%></div>
+      <div><%=reservation.time.strftime("%l:%M%p")%></div>
+      <div>Party of <%=reservation.party_size%></div>
+      <div><%=reservation.phone%></div>
+    </li>
+    <%end%>
+  </ol>
+
+  <%= link_to 'Update Restaurant', edit_restaurant_path(@restaurant) %>
+  <%= link_to 'Delete Restaurant', @restaurant, method: :delete,  data: {confirm: "Are you sure you want to delete this restaurant"}  %>
+</div>

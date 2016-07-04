@@ -1,0 +1,8 @@
+<%=link_to 'Back to restaurants', restaurants_path %>
+<%=link_to 'Update profile', edit_customer_path(current_user.id) %>
+
+<% if session[:account_type] == 'admin' %>
+  <%= render "admin_show"%>
+<% else %>
+  <%=render "customer_show"%>
+<%end%>

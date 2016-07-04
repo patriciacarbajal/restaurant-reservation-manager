@@ -1,0 +1,12 @@
+<%=link_to 'See my reservations', customer_path(session[:customer_id]) %>
+<section id="restaurants_container">
+  <h2 class="restaurant_title">Hungry? Book a table at one of our restaurants!</h2>
+
+  <% @restaurants.each do |restaurant| %>
+    <div class="restaurant">
+      <%= link_to restaurant_path(restaurant) do %>
+        <%=restaurant.name%>
+      <% end %>
+    </div>
+  <% end %>
+</section>
