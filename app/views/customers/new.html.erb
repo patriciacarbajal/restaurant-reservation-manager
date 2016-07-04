@@ -1,0 +1,15 @@
+<div class='error-notices'>
+  <% if @customer.errors.any? %>
+    <% @customer.errors.full_messages.each do |msg| %>
+    <ul>
+      <li><%= msg %></li>
+    </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="sign_up_container">
+  <h1>Sign up</h1>
+  <%= render "customer_form" %>
+  <p>Already signed up? <%= link_to "Sign into your account", login_path %></p>
+</div>

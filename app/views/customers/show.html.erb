@@ -1,0 +1,43 @@
+<%=link_to 'Back to restaurants', restaurants_path %>
+<%=link_to 'Update profile', edit_customer_path(current_user.id) %>
+<section id="customer_reservations_container">
+  <h2>Hi <%=@customer.name %>, you have <%=@reservations.count%> current <%="reservation".pluralize(@reservations.count)%></h2>
+
+  <% @reservations.each do |reservation| %>
+    <div class="reservation-container">
+      <div class="reservation-data">
+        <div><h3><%= reservation.restaurant.name %></h3></div>
+        <div><%= reservation.date.strftime("%m/%d/%Y") %></div>
+        <div><%= reservation.time.strftime("%l:%M%p") %></div>
+        <div>Party of <%= reservation.party_size %></div>
+        <div>Contact number: <%= reservation.phone %></div>
+      </div>
+
+      <div>Update Details</div> 
+        <div class='error-notices'>
+          <% if reservation.errors.any? %>
+            <% reservation.errors.full_messages.each do |msg| %>
+            <ul>
+              <li><%= msg %></li>
+            </ul>
+            <% end %>
+          <% end %>
+        </div>
+
+        <% @restaurant = Restaurant.find(reservation.restaurant_id)%>
+          <%= form_for [@restaurant, reservation] do |f| %>
+              <%= collection_select(:reservation, :restaurant_id, Restaurant.all, :id, :name) %>
+              <%= f.date_field :date  %>
+              <% dropdown = @restaurant.time_range(@restaurant) %>
+              <% time_options = @restaurant.time_range_show(dropdown) %>
+              <%= f.select :time, options_for_select(time_options, dropdown)%>
+              <%= f.text_field :party_size, placeholder: "Party size" %>
+              <%= f.text_field :phone, placeholder: "Contact phone" %>
+              <%= f.submit 'Update', class:"form_button" %>
+          <% end%>
+
+        <%= link_to 'Delete Reservation', [@restaurant, reservation], method: :delete, data: {confirm: "Are you sure you want to delete this reservation?"}, class:"form_button" %>
+        </div>
+    </div>
+  <% end %>
+</section>

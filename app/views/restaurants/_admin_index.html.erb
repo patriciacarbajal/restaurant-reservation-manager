@@ -1,0 +1,13 @@
+<section id="restaurants_container">
+  <%= link_to 'Add a Restaurant', new_restaurant_path, class:'add_restaurant' %>
+
+  <h2>Your restaurants</h2>
+
+   <% @restaurants.each do |restaurant| %>
+     <div class="restaurant">
+         <%= link_to restaurant_path(restaurant) do %>
+           <%=restaurant.name%>
+         <% end %>
+     </div>
+   <% end %>
+ </section>

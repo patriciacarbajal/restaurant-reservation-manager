@@ -1,0 +1,26 @@
+<%=link_to 'See my reservations', customer_path(session[:customer_id]) %>
+  <h1> Make a Reservation </h1>
+
+  <%= form_for [@restaurant, @reservation] do |f| %>
+    <div>
+      <%= f.date_field :date, class:'form_box' %>
+    </div>
+    <div>
+      <% dropdown = @restaurant.time_range(@restaurant) %>
+      <% time_options = @restaurant.time_range_show(dropdown) %>
+      <%= f.select :time, options_for_select(time_options, dropdown)%>
+    </div>
+    <div>
+      <%= f.text_field :party_size, placeholder: 'Party size' %>
+    </div>
+    <div">
+      <%= f.text_field :phone, placeholder: "Contact phone" %>
+    </div>
+    <div>
+      <%= f.submit 'Find a Table', :class=>"form_button" %>
+    </div>
+  <% end %>
+
+  <h2 class="about-restaurant">About <%=@restaurant.name%></h2>
+  <p class="restaurant-description"><%=@restaurant.description%></p>
+</div>

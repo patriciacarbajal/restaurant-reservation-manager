@@ -1,0 +1,15 @@
+<div class="login_container">
+  <h1 class="welcome_title">Restaurant Reservation Manager</h1>
+  <div class="login_form">
+    <%= form_tag login_path do %>
+      <div>
+        <div class="form_field"><%= text_field_tag :email, params[:email], placeholder: "Email" %></div>
+      </div>
+      <div>
+        <div class="form_field"><%= password_field_tag :password, params[:password], placeholder: "Password" %></div>
+        </div>
+      <div><%= submit_tag "Log in", class:'form_button' %></div>
+    <% end %>
+  </div>
+  <p>Need to register? <%= link_to "Sign up", new_customer_path %></p>
+</div>

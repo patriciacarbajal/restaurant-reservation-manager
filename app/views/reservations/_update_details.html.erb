@@ -1,0 +1,23 @@
+<h1>Update Details</h1>
+
+<div class='error-notices'>
+  <% if @reservation.errors.any? %>
+    <% @reservation.errors.full_messages.each do |msg| %>
+    <ul>
+      <li><%= msg %></li>
+    </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_for [@restaurant, @reservation] do |f| %>
+  <%= collection_select(:reservation, :restaurant_id, Restaurant.all, :id, :name) %>
+  <%= f.label :date %>
+  <%= f.date_field :date  %>
+  <% dropdown = @restaurant.time_range(@restaurant) %>
+  <% time_options = @restaurant.time_range_show(dropdown) %>
+  <%= f.select :time, options_for_select(time_options, dropdown)%>
+  <%= f.text_field :party_size, placeholder: "Party size" %>
+  <%= f.text_field :phone, placeholder: "Contact phone" %>
+  <%= f.submit 'Update', class:"form_button" %>
+<% end%>
